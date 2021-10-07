@@ -1,0 +1,21 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: eu.gcr.io/shipup-infra/circle-shipup:1.0.9
+        auth:
+          username: _json_key
+          password: $GCLOUD_SERVICE_KEY
+    resource_class: medium
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: bash /deploy/deploy.sh
+
+workflows:
+  version: 2
+  build-image:
+    jobs:
+      - build
