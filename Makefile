@@ -5,7 +5,7 @@ jq := docker run --rm -i r.j3ss.co/jq jq
 
 # ---
 
-image-name := gtramontina/commitlint
+image-name := getshipup/commitlint
 tag = $(shell cat package.json | $(jq) '.dependencies["@commitlint/cli"]')
 
 # ---
